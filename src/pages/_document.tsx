@@ -15,11 +15,11 @@ class MyDocument extends Document {
             content="Frontend developer from Sweden. Building stuff for the web."
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700"
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="text-gray-50 bg-gray-900">
+        <body className="text-gray-50 bg-[#111]">
           <Main />
           <NextScript />
         </body>
