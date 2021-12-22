@@ -14,8 +14,9 @@ class MyDocument extends Document {
             name="description"
             content="Frontend developer from Sweden. Building stuff for the web."
           />
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600"
             rel="stylesheet"
           ></link>
         </Head>

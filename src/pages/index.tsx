@@ -8,14 +8,14 @@ export const config: PageConfig = {
 
 const Home: NextPage = () => {
   return (
-    <Container className="px-6 leading-relaxed py-14 md:py-20 antialiased">
+    <Container className="px-6 leading-relaxed py-16 md:py-20 antialiased">
       <main>
-        <h1 className="font-bold">Hannes Bornö</h1>
-        <p className="text-gray-300 mt-3">
+        <h1 className="font-semibold">Hannes Bornö</h1>
+        <p className="text-gray-300 mt-5">
           Frontend developer from Sweden. Building stuff for the web. Into
           TypeScript, Next.js and Tailwind.
         </p>
-        <h2 className="mt-12 md:mt-14 font-semibold">Contact</h2>
+        <h2 className="mt-14 md:mt-14 font-semibold">Contact</h2>
         <div className="text-gray-300 mt-3 flex">
           <p className="w-32">Email</p>
           <a
@@ -49,8 +49,8 @@ const Home: NextPage = () => {
           `}</style>
         </div>
 
-        <h2 className="mt-12 md:mt-14 font-semibold">Projects</h2>
-        <div className="gap-5 md:gap-8 mt-6 grid grid-cols-1 md:grid-cols-2 justify-items-stretch">
+        <h2 className="mt-14 md:mt-14 font-semibold">Projects</h2>
+        <div className="gap-6 md:gap-8 mt-6 grid grid-cols-1 md:grid-cols-2 justify-items-stretch">
           <Project
             href="https://github.com/hanneslund/homepage"
             name="borno.me"
