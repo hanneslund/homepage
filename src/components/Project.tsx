@@ -18,7 +18,7 @@ function Project({ name, children, href, langs }: Props) {
       >
         <div className="p-4">
           <h3 className="font-semibold text-sm">{name}</h3>
-          <p className="text-gray-300 text-sm mt-2">{children}</p>
+          <p className="text-gray-400 text-sm mt-2">{children}</p>
         </div>
         <div className="p-4 text-xs order-t border-gray-900 flex gap-5">
           {langs}
