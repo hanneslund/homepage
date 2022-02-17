@@ -20,9 +20,15 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="text-gray-50 bg-black">
+        <body className="loading bg-neutral-900 text-neutral-50">
           <Main />
           <NextScript />
+          <script
+            dangerouslySetInnerHTML={{
+              __html:
+                'if (document.body.classList) document.body.classList.remove("loading");',
+            }}
+          />
         </body>
       </Html>
     );
