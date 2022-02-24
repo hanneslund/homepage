@@ -143,6 +143,9 @@ class Sampler {
           // PREFER DOWN DETUNE?
           // PREFER DOWN DETUNE?
           // PREFER DOWN DETUNE?
+          // PREFER DOWN DETUNE?
+          // PREFER DOWN DETUNE?
+          // PREFER DOWN DETUNE?
         } else if (curNoteDiff < accNoteDiff) {
           return curSampleKey;
         }

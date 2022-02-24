@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import Sampler, { isMidiSupportet, SamplesMap } from "../lib/sampler";
-import { SamplerEvents } from "../lib/sampler/Sampler";
+import Sampler, { SamplerEvents } from "../lib/sampler/Sampler";
+import { isMidiSupportet } from "../lib/sampler/MidiInput";
+import { SamplesMap } from "../lib/sampler/data";
 
 const NOTES = ["C", "D", "E", "F", "G", "A", "B"];
 const OCTAVES = [1, 2, 3, 4, 5, 6, 7];

@@ -24,9 +24,6 @@ class MidiInput {
       };
 
       onStateChange();
-      setTimeout(() => {
-        onStateChange();
-      }, 2000);
       access.onstatechange = onStateChange;
     });
   }
