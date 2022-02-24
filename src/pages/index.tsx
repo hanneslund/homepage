@@ -8,7 +8,7 @@ export const config: PageConfig = {
 
 const Home: NextPage = () => {
   return (
-    <div className="mx-auto max-w-[700px] px-8 py-16 leading-relaxed antialiased md:py-44">
+    <div className="mx-auto max-w-[700px] px-8 pt-16 leading-relaxed antialiased md:pt-44">
       <main>
         <h1 className="text-2xl font-semibold text-neutral-50">Hannes Bornö</h1>
         <p className="mt-6">
