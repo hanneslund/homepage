@@ -5,7 +5,7 @@ import { isMidiSupportet } from "../lib/sampler/MidiInput";
 import { SamplesMap } from "../lib/sampler/data";
 
 const NOTES = ["C", "D", "E", "F", "G", "A", "B"];
-const OCTAVES = [1, 2, 3, 4, 5, 6, 7];
+const OCTAVES = [2, 3, 4, 5, 6];
 const WHITE_KEYS_IN_OCTAVE = 7;
 const WIDTH = WHITE_KEYS_IN_OCTAVE * OCTAVES.length * 15;
 const WHITE_KEYS = OCTAVES.flatMap((octave) =>
@@ -112,10 +112,6 @@ export default function Piano() {
     sampler.current?.init(new AudioContext(), samples, irReverb);
   }, [isPianoEnabled, samples, irReverb]);
 
-  if (typeof audioContextSupport === "boolean" && !audioContextSupport) {
-    return <p>Your browser doesn{"'"}t support AudioContext</p>;
-  }
-
   if (samplesError) {
     return <p>Failed to fetch samples, try reloading the page.</p>;
   }
@@ -131,14 +127,21 @@ export default function Piano() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <button
-              onClick={() => {
-                setIsPianoEnabled(true);
-              }}
-              className="h-8 rounded border border-neutral-600 px-3 text-xs hover:border-neutral-500 hover:text-neutral-100"
-            >
-              Unmute
-            </button>
+            {typeof audioContextSupport === "boolean" &&
+            !audioContextSupport ? (
+              <p className="flex h-8 items-center text-xs">
+                Your browser doesn{"'"}t support AudioContext
+              </p>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsPianoEnabled(true);
+                }}
+                className="h-8 rounded border border-neutral-600 px-3 text-xs hover:border-neutral-500 hover:text-neutral-100"
+              >
+                Unmute
+              </button>
+            )}
           </Transition>
         </div>
         <div>
@@ -301,6 +304,7 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
       onMouseLeave={() => {
         setNote(null);
       }}
+      className="w-full"
     >
       {WHITE_KEYS.map(({ octave, tone }, i) => (
         <rect
