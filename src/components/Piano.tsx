@@ -76,12 +76,6 @@ export default function Piano() {
   // Fetch samples
   useEffect(() => {
     async function getSamples() {
-      // PREFETCH <link>
-      // PREFETCH <link>
-      // PREFETCH <link>
-      // PREFETCH <link>
-      // PREFETCH <link>
-      // PREFETCH <link>
       const getSample = (url: string) =>
         fetch(url).then((r) =>
           r.ok ? r.arrayBuffer() : Promise.reject("404")
@@ -116,10 +110,14 @@ export default function Piano() {
     return <p>Failed to fetch samples, try reloading the page.</p>;
   }
 
+  if (typeof audioContextSupport === "boolean" && !audioContextSupport) {
+    return <p>Your browser doesn{"'"}t support AudioContext</p>;
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className="flex items-center justify-between gap-2">
+        <div>
           <Transition
             show={!isPianoEnabled}
             as={Fragment}
@@ -127,21 +125,14 @@ export default function Piano() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            {typeof audioContextSupport === "boolean" &&
-            !audioContextSupport ? (
-              <p className="flex h-8 items-center text-xs">
-                Your browser doesn{"'"}t support AudioContext
-              </p>
-            ) : (
-              <button
-                onClick={() => {
-                  setIsPianoEnabled(true);
-                }}
-                className="h-8 rounded border border-neutral-600 px-3 text-xs hover:border-neutral-500 hover:text-neutral-100"
-              >
-                Unmute
-              </button>
-            )}
+            <button
+              onClick={() => {
+                setIsPianoEnabled(true);
+              }}
+              className="h-8 rounded border border-neutral-600 px-3 text-xs hover:border-neutral-500 hover:text-neutral-100"
+            >
+              Unmute
+            </button>
           </Transition>
         </div>
         <div>
@@ -244,7 +235,7 @@ export default function Piano() {
           )}
         </div>
       </div>
-      <div className="relative mt-4">
+      <div className="mt-4">
         <Keyboard sampler={sampler.current} />
       </div>
     </div>
@@ -298,6 +289,14 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
       viewBox={`-1 -1 ${WIDTH + 2} 102`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      onTouchStart={(e: any) => {
+        setNote(e.target.dataset?.note ?? null);
+        setMouseDown(true);
+      }}
+      onTouchEnd={() => {
+        setNote(null);
+        setMouseDown(false);
+      }}
       onMouseOver={(e: any) => {
         setNote(e.target.dataset?.note ?? null);
       }}
