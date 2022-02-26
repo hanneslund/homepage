@@ -242,6 +242,7 @@ export default function Piano() {
   );
 }
 
+const isTouch = isTouchDevice();
 function Keyboard({ sampler }: { sampler: null | Sampler }) {
   const [mouseDown, setMouseDown] = useState(false);
   const [note, setNote] = useState<null | string>(null);
@@ -298,9 +299,11 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
         setMouseDown(false);
       }}
       onMouseOver={(e: any) => {
+        if (isTouch) return;
         setNote(e.target.dataset?.note ?? null);
       }}
       onMouseLeave={() => {
+        if (isTouch) return;
         setNote(null);
       }}
       className="w-full"
@@ -347,5 +350,21 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
         strokeWidth="2"
       />
     </svg>
+  );
+}
+
+function isTouchDevice() {
+  return (
+    !!(
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        ((window as any).DocumentTouch &&
+          typeof document !== "undefined" &&
+          document instanceof (window as any).DocumentTouch))
+    ) ||
+    !!(
+      typeof navigator !== "undefined" &&
+      (navigator.maxTouchPoints || (navigator as any).msMaxTouchPoints)
+    )
   );
 }
