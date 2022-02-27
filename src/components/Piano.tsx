@@ -242,47 +242,7 @@ export default function Piano() {
   );
 }
 
-const isTouch = isTouchDevice();
 function Keyboard({ sampler }: { sampler: null | Sampler }) {
-  const [mouseDown, setMouseDown] = useState(false);
-  const [note, setNote] = useState<null | string>(null);
-  const playingNote = useRef<null | string>(null);
-
-  useEffect(() => {
-    const mousedownHandler = () => setMouseDown(true);
-    document.addEventListener("mousedown", mousedownHandler);
-
-    const mouseupHandler = () => setMouseDown(false);
-    document.addEventListener("mouseup", mouseupHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", mousedownHandler);
-      document.removeEventListener("mouseup", mouseupHandler);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!sampler) return;
-    const currentNote = playingNote.current;
-
-    if ((!mouseDown && currentNote) || (currentNote && currentNote !== note)) {
-      sampler.emitter.emit({
-        type: "noteOff",
-        note: currentNote,
-      });
-      playingNote.current = null;
-    }
-
-    if (note && mouseDown) {
-      sampler.emitter.emit({
-        type: "noteOn",
-        note,
-        velocity: 100,
-      });
-      playingNote.current = note;
-    }
-  }, [note, mouseDown, sampler]);
-
   return (
     <svg
       width={WIDTH}
@@ -290,22 +250,6 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
       viewBox={`-1 -1 ${WIDTH + 2} 102`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      onTouchStart={(e: any) => {
-        setNote(e.target.dataset?.note ?? null);
-        setMouseDown(true);
-      }}
-      onTouchEnd={() => {
-        setNote(null);
-        setMouseDown(false);
-      }}
-      onMouseOver={(e: any) => {
-        if (isTouch) return;
-        setNote(e.target.dataset?.note ?? null);
-      }}
-      onMouseLeave={() => {
-        if (isTouch) return;
-        setNote(null);
-      }}
       className="w-full"
     >
       {WHITE_KEYS.map(({ octave, tone }, i) => (
@@ -318,6 +262,20 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
           height="100"
           fill="currentColor"
           className="text-neutral-900"
+          onPointerDown={() => {
+            if (!sampler) return;
+            sampler.emitter.emit({
+              type: "noteOn",
+              note: `${tone}${octave}`,
+              velocity: 100,
+            });
+            setTimeout(() => {
+              sampler.emitter.emit({
+                type: "noteOff",
+                note: `${tone}${octave}`,
+              });
+            }, 500);
+          }}
         />
       ))}
       {WHITE_KEYS.slice(0, -1).map((_, i) => (
@@ -338,6 +296,20 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
             width="8"
             height="60"
             fill="currentColor"
+            onPointerDown={() => {
+              if (!sampler) return;
+              sampler.emitter.emit({
+                type: "noteOn",
+                note: `${tone}#${octave}`,
+                velocity: 100,
+              });
+              setTimeout(() => {
+                sampler.emitter.emit({
+                  type: "noteOff",
+                  note: `${tone}#${octave}`,
+                });
+              }, 500);
+            }}
           />
         ) : null
       )}
@@ -350,21 +322,5 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
         strokeWidth="2"
       />
     </svg>
-  );
-}
-
-function isTouchDevice() {
-  return (
-    !!(
-      typeof window !== "undefined" &&
-      ("ontouchstart" in window ||
-        ((window as any).DocumentTouch &&
-          typeof document !== "undefined" &&
-          document instanceof (window as any).DocumentTouch))
-    ) ||
-    !!(
-      typeof navigator !== "undefined" &&
-      (navigator.maxTouchPoints || (navigator as any).msMaxTouchPoints)
-    )
   );
 }
