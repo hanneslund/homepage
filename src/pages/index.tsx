@@ -23,14 +23,14 @@ const Home: NextPage = () => {
         <h2 className="mt-14 font-semibold text-neutral-200">
           Latest Projects
         </h2>
-        <div className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2 sm:gap-12">
+        <div className="mt-6 grid grid-cols-1 gap-6 text-sm sm:grid-cols-2 sm:gap-12">
           <div>
             <Link href="/piano">
               <a className="inline-block border-b border-transparent pb-px font-medium text-neutral-300 transition duration-300 hover:border-neutral-300 hover:text-neutral-200">
-                <h3>Soft Piano</h3>
+                <h3>Sampled Piano</h3>
               </a>
             </Link>
-            <p className="mt-2">
+            <p className="mt-1 sm:mt-2">
               A sampled piano using Web Audio and Web MIDI.
             </p>
           </div>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
             >
               <h3>emergentcss</h3>
             </a>
-            <p className="mt-2">
+            <p className="mt-1 sm:mt-2">
               A compiler that generates CSS. Inspired by Tailwind.
             </p>
           </div>
