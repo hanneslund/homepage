@@ -139,14 +139,7 @@ class Sampler {
         const curNoteNumber = NOTE_TO_NUMBER[curSampleKey];
         const accNoteDiff = Math.abs(accNoteNumber - noteNumber);
         const curNoteDiff = Math.abs(curNoteNumber - noteNumber);
-        if (curNoteDiff === accNoteDiff) {
-          // PREFER DOWN DETUNE?
-          // PREFER DOWN DETUNE?
-          // PREFER DOWN DETUNE?
-          // PREFER DOWN DETUNE?
-          // PREFER DOWN DETUNE?
-          // PREFER DOWN DETUNE?
-        } else if (curNoteDiff < accNoteDiff) {
+        if (curNoteDiff < accNoteDiff) {
           return curSampleKey;
         }
         return accSampleKey;
