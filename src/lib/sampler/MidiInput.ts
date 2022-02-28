@@ -10,7 +10,7 @@ class MidiInput {
   }
 
   init() {
-    if (!isMidiSupportet()) return;
+    if (!isMidiSupported()) return;
     (navigator as any).requestMIDIAccess().then((access: any) => {
       const onStateChange = () => {
         const inputs = [...access.inputs.values()];
@@ -74,7 +74,7 @@ class MidiInput {
   }
 }
 
-export function isMidiSupportet() {
+export function isMidiSupported() {
   return "requestMIDIAccess" in navigator;
 }
 

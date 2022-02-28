@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import Sampler, { SamplerEvents } from "../lib/sampler/Sampler";
-import { isMidiSupportet } from "../lib/sampler/MidiInput";
+import { isMidiSupported } from "../lib/sampler/MidiInput";
 import { SamplesMap } from "../lib/sampler/data";
 
 const NOTES = ["C", "D", "E", "F", "G", "A", "B"];
@@ -30,7 +30,7 @@ export default function Piano() {
 
   // Check for midi support
   useEffect(() => {
-    setMidiSupport(isMidiSupportet());
+    setMidiSupport(isMidiSupported());
     setAudioContextSupport(Boolean(window.AudioContext));
   }, []);
 
@@ -77,9 +77,7 @@ export default function Piano() {
   useEffect(() => {
     async function getSamples() {
       const getSample = (url: string) =>
-        fetch(url).then((r) =>
-          r.ok ? r.arrayBuffer() : Promise.reject("404")
-        );
+        fetch(url).then((r) => (r.ok ? r.arrayBuffer() : Promise.reject()));
 
       try {
         const [C2, C3, C4, C5, C6, reverbBuffer] = await Promise.all([
