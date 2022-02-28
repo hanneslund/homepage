@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import "../styles/chrome-bug.css";
 
 import Head from "next/head";
 import type { AppProps } from "next/app";

@@ -1,6 +1,5 @@
 import type { NextPage, PageConfig } from "next";
-import Container from "../components/Container";
-import Project from "../components/Project";
+import Link from "next/link";
 import A from "../components/A";
 
 export const config: PageConfig = {
@@ -9,92 +8,46 @@ export const config: PageConfig = {
 
 const Home: NextPage = () => {
   return (
-    <Container className="px-6 leading-relaxed py-16 md:py-20 antialiased">
+    <div className="mx-auto max-w-[700px] px-8 pt-16 leading-relaxed antialiased md:pt-44">
       <main>
-        <h1 className="font-semibold">Hannes Bornö</h1>
-        <p className="text-gray-400 mt-5">
-          Frontend developer from Sweden. Building stuff for the web. Into
-          TypeScript, Next.js and Tailwind.
+        <h1 className="text-2xl font-semibold text-neutral-50">Hannes Bornö</h1>
+        <p className="mt-6">
+          Software engineer from Sweden. Building stuff for the web, sometimes
+          it ends up on my <A href="https://github.com/hanneslund">GitHub</A>.
+          Into TypeScript, Next.js and Tailwind. Currently enjoying Rust.
         </p>
-        <p className="text-gray-400 mt-5">
-          Currently enjoying Rust by working on{" "}
-          <A href="https://emergentcss.vercel.app/">emergentcss</A>.
+        <p className="mt-6">
+          Feel free to shoot me an{" "}
+          <A href="mailto:borno.hannes@gmail.com">email</A>.
         </p>
-
-        <h2 className="mt-14 md:mt-14 font-semibold">Contact</h2>
-        <div className="text-gray-400 mt-3 flex">
-          <p className="w-32">Email</p>
+        <h2 className="mt-14 font-semibold text-neutral-200">
+          Latest Projects
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-6 text-sm sm:grid-cols-2 sm:gap-12">
           <div>
-            <A href="mailto:borno.hannes@gmail.com">borno.hannes@gmail.com</A>
+            <Link href="/piano">
+              <a className="inline-block border-b border-transparent pb-px font-medium text-neutral-300 transition duration-300 hover:border-neutral-300 hover:text-neutral-200">
+                <h3>Sampled Piano</h3>
+              </a>
+            </Link>
+            <p className="mt-1 sm:mt-2">
+              A sampled piano using Web Audio and Web MIDI.
+            </p>
           </div>
-        </div>
-        <div className="text-gray-400 mt-2 flex">
-          <p className="w-32">Github</p>
           <div>
-            <A href="https://github.com/hanneslund">hanneslund</A>
+            <a
+              href="https://emergentcss.vercel.app/"
+              className="inline-block border-b border-transparent pb-px font-medium text-neutral-300 transition duration-300 hover:border-neutral-300 hover:text-neutral-200"
+            >
+              <h3>emergentcss</h3>
+            </a>
+            <p className="mt-1 sm:mt-2">
+              A compiler that generates CSS. Inspired by Tailwind.
+            </p>
           </div>
-        </div>
-
-        <h2 className="mt-14 md:mt-14 font-semibold">Projects</h2>
-        <div className="gap-6 md:gap-8 mt-6 grid grid-cols-1 md:grid-cols-2 justify-items-stretch">
-          <Project
-            href="https://github.com/hanneslund/emergentcss"
-            name="emergentcss"
-            langs={<span className="text-red-400">Rust</span>}
-          >
-            A compiler that generates CSS.
-          </Project>
-          <Project
-            href="https://github.com/hanneslund/homepage"
-            name="borno.me"
-            langs={
-              <>
-                <span className="text-gray-50">Next.js</span>
-                <span className="text-[#38bdf8]">Tailwind</span>
-              </>
-            }
-          >
-            This page.
-          </Project>
-          <Project
-            href="https://github.com/hanneslund/pizzadeg"
-            name="Pizzadeg"
-            langs={
-              <>
-                <span className="text-gray-50">Next.js</span>
-                <span className="text-[#38bdf8]">Tailwind</span>
-                <span className="text-[#3fcf8e]">Supabase</span>
-              </>
-            }
-          >
-            Website I use to track my pizza doughs.
-          </Project>
-          <Project
-            href="https://github.com/hanneslund/myjam"
-            name="myjam"
-            langs={<span className="text-[#5c95d6]">TypeScript</span>}
-          >
-            Ever wanted to try something like Next.js, but worse? Well, then you
-            {"'"}re in luck!
-          </Project>
-          <Project
-            href="https://github.com/hanneslund/rolly-froggy"
-            name="Rolly Froggy"
-            langs={<span className="text-[#1193d7]">Elm</span>}
-          >
-            Flappy Bird inspired game. Instead of a bird you{"'"}re a rolling
-            frog.
-          </Project>
-          <Project
-            href="https://github.com/hanneslund/elm-dodgeball"
-            name="Elm Dodgeball"
-            langs={<span className="text-[#1193d7]">Elm</span>}
-          >
-            Help the ball escape from the squares.
-          </Project>
         </div>
       </main>
-    </Container>
+    </div>
   );
 };
 
