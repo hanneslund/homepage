@@ -20,7 +20,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body className="loading bg-neutral-900 text-neutral-400">
+        <body className="loading bg-[#111] text-neutral-400">
           <Main />
           <NextScript />
           <script

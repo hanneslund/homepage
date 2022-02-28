@@ -177,7 +177,7 @@ export default function Piano() {
                       </svg>
                     </span>
                   </Listbox.Button>
-                  <Listbox.Options className="absolute z-10 mt-1 w-full rounded border border-neutral-600 bg-neutral-900 text-xs outline-none">
+                  <Listbox.Options className="absolute z-10 mt-1 w-full rounded border border-neutral-600 bg-[#111] text-xs outline-none">
                     {availableMidiInputs.length === 0 ? (
                       <span className="flex justify-center py-2">
                         No MIDI input found
@@ -259,7 +259,7 @@ function Keyboard({ sampler }: { sampler: null | Sampler }) {
           width="15"
           height="100"
           fill="currentColor"
-          className="text-neutral-900"
+          className="text-[#111]"
           onPointerDown={() => {
             if (!sampler) return;
             sampler.emitter.emit({
