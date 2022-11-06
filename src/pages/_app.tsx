@@ -1,17 +1,20 @@
 import "tailwindcss/tailwind.css";
-import "../styles/chrome-bug.css";
 
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { Inter } from "@next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <style jsx global>{`
         html {
-          font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
+          font-family: ${inter.style.fontFamily};
+        }
+        a {
+          color: rgb(163, 163, 163);
         }
       `}</style>
       <Head>

@@ -12,9 +12,9 @@ const Home: NextPage = () => {
       <main>
         <h1 className="text-2xl font-semibold text-neutral-50">Hannes Bornö</h1>
         <p className="mt-6">
-          Software engineer from Sweden. Building stuff for the web, sometimes
-          it ends up on my <A href="https://github.com/hanneslund">GitHub</A>.
-          Into TypeScript, Next.js and Tailwind. Currently enjoying Rust.
+          Software engineer at ▲Vercel. Building stuff for the web, sometimes it
+          ends up on my <A href="https://github.com/hanneslund">GitHub</A>. Into
+          TypeScript, Next.js and Tailwind. Currently enjoying Rust.
         </p>
         <p className="mt-6">
           Feel free to shoot me an{" "}
@@ -25,10 +25,11 @@ const Home: NextPage = () => {
         </h2>
         <div className="mt-6 grid grid-cols-1 gap-6 text-sm sm:grid-cols-2 sm:gap-12">
           <div>
-            <Link href="/piano">
-              <a className="inline-block border-b border-transparent pb-px font-medium text-neutral-300 transition duration-300 hover:border-neutral-300 hover:text-neutral-200">
-                <h3>Sampled Piano</h3>
-              </a>
+            <Link
+              href="/piano"
+              className="inline-block border-b border-transparent pb-px font-medium text-neutral-300 transition duration-300 hover:border-neutral-300 hover:text-neutral-200"
+            >
+              <h3>Sampled Piano</h3>
             </Link>
             <p className="mt-1 sm:mt-2">
               A sampled piano using Web Audio and Web MIDI.
